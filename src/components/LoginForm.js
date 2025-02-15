@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/LoginForm.css';
 
 const LoginForm = ({ onLogin }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -10,7 +11,7 @@ const LoginForm = ({ onLogin }) => {
     e.preventDefault();
   
     try {
-      const response = await fetch('/login', {
+      const response = await fetch(`${API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
