@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SeatChart from '../components/SeatChart';
+import MyReservations from '../components/MyReservations';
+
 
 const Dashboard = () => {
   const [seats, setSeats] = useState([]);
@@ -32,7 +34,11 @@ const Dashboard = () => {
       <button onClick={() => handleLogin('kng')}>로그인 (kng)</button>
       {/* 유저네임이 있을 경우 좌석 차트 표시 */}
       {userName && (
-        <SeatChart seats={seats} userName={userName} />
+        <>
+          <SeatChart seats={seats} userName={userName} />
+          <MyReservations userName={userName} />
+        </>
+        
       )}
     </div>
   );

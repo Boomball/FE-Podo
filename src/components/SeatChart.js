@@ -11,6 +11,7 @@ const SeatChart = ({ seats, userName, onSeatClick }) => {
     if (updatedSeat.status !== 'AVAILABLE') return; // 이미 예약된 좌석은 클릭 불가능
 
     // 백엔드로 좌석 예약 요청 보내기
+    // *** 서버 주소 바꿔야함 ***
     axios.post(`http://localhost:8080/api/users/${userName}/reserve/${id}`)
       .then((response) => {
         // 백엔드 요청이 성공했을 때 처리
