@@ -23,7 +23,7 @@ const Dashboard = () => {
       .catch(error => {
         console.error('좌석 정보를 가져오는 데 실패했습니다:', error);
       });
-  }, []);
+  }, [API_URL]);
 
   return (
     <div>
