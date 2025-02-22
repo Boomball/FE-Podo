@@ -27,8 +27,8 @@ const LoginForm = ({ onLogin }) => {
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
   
-        if (data.token) {
-          localStorage.setItem('token', data.token);
+        if (data.name) {
+          localStorage.setItem('username', data.name);
           onLogin(); // 로그인 성공 시 부모 컴포넌트로 알림
         } else {
           throw new Error('로그인에 실패했습니다.');
