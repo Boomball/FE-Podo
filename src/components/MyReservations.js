@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const MyReservations = ({ userName }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [mySeats, setMySeats] = useState([]);
   const [showSeats, setShowSeats] = useState(false); // 버튼 클릭 시 토글
 
   const fetchMySeats = () => {
-    axios.get(`http://localhost:8080/api/users/${userName}/seats`)
+    axios.get(`${API_URL}/users/${userName}/seats`)
       .then(response => {
         setMySeats(response.data);
         setShowSeats(true); // 데이터를 가져오면 표시

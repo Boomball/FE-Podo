@@ -5,6 +5,7 @@ import MyReservations from '../components/MyReservations';
 
 
 const Dashboard = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [seats, setSeats] = useState([]);
   const [userName, setUserName] = useState(''); // 유저네임 상태 추가
 
@@ -15,7 +16,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     // 좌석 정보 가져오기
-    axios.get('http://localhost:8080/api/seats')
+    axios.get(`${API_URL}/seats`)
       .then(response => {
         setSeats(response.data); // 가져온 데이터로 상태 업데이트
       })

@@ -11,7 +11,7 @@ const LoginForm = ({ onLogin }) => {
     e.preventDefault();
   
     try {
-      const response = await fetch(`${API_URL}/users/register`, {
+      const response = await fetch(`${API_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -27,8 +27,8 @@ const LoginForm = ({ onLogin }) => {
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
   
-        if (data.token) {
-          localStorage.setItem('token', data.token);
+        if (data.name) {
+          localStorage.setItem('username', data.name);
           onLogin(); // 로그인 성공 시 부모 컴포넌트로 알림
         } else {
           throw new Error('로그인에 실패했습니다.');

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const SeatChart = ({ seats, userName, onSeatClick }) => {
+  const API_URL = process.env.REACT_APP_API_URL;
+
   // 좌석의 상태를 상태로 관리할 수 있도록 useState 사용
   const [updatedSeats, setUpdatedSeats] = useState(seats);
 
@@ -12,13 +14,13 @@ const SeatChart = ({ seats, userName, onSeatClick }) => {
 
     // 백엔드로 좌석 예약 요청 보내기
     // *** 서버 주소 바꿔야함 ***
-    axios.post(`http://localhost:8080/api/users/${userName}/reserve/${id}`)
+    axios.post(`${API_URL}/users/${userName}/reserve/${id}`)
       .then((response) => {
         // 백엔드 요청이 성공했을 때 처리
         console.log('좌석 예약 성공:', response.data);
         
         // 서버에서 갱신된 좌석 상태를 받아와서 상태 업데이트
-        axios.get('http://localhost:8080/api/seats')  // 좌석 상태를 다시 가져오는 API 호출
+        axios.get(`${API_URL}/seats`)  // 좌석 상태를 다시 가져오는 API 호출
           .then((response) => {
             setUpdatedSeats(response.data);  // 서버에서 받은 데이터로 상태 업데이트
           })
