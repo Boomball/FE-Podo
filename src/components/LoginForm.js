@@ -11,11 +11,11 @@ const LoginForm = ({ onLogin }) => {
     e.preventDefault();
   
     try {
-      const response = await fetch(`${API_URL}/login`, {
+      const response = await fetch(`${API_URL}/users/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
-      });
+      }); 
   
       // 응답 상태 코드 확인
       if (!response.ok) {
