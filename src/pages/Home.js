@@ -10,13 +10,14 @@ const Home = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/dashboard'); // 로그인 후 대시보드 페이지로 이동
+      navigate('/dashboard');
     }
   }, [isLoggedIn, navigate]);
 
-  const handleLoginSuccess = () => {
+  const handleLoginSuccess = (username) => {
     setIsLoggedIn(true);
-    localStorage.setItem('isLoggedIn', 'true'); // 로그인 상태 저장
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', username); // 사용자 이름 로컬스토리지에 저장
   };
 
   return (
