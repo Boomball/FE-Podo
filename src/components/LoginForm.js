@@ -9,27 +9,27 @@ const LoginForm = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch(`${API_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
-      }); 
-  
+      });
+
       // 응답 상태 코드 확인
       if (!response.ok) {
         throw new Error(`HTTP Error: ${response.status}`); // HTTP 상태 코드로 에러 처리
       }
-  
+
       // Content-Type 확인 및 JSON 파싱
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
-  
+
         if (data.name) {
           localStorage.setItem('username', data.name);
-          onLogin(); // 로그인 성공 시 부모 컴포넌트로 알림
+          onLogin(data.name); // 사용자 이름 넘기기
         } else {
           throw new Error('로그인에 실패했습니다.');
         }
@@ -40,7 +40,6 @@ const LoginForm = ({ onLogin }) => {
       setError(err.message); // 사용자에게 표시할 에러 메시지 업데이트
     }
   };
-  
 
   return (
     <div className="login-container">
