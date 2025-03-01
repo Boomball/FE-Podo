@@ -29,7 +29,7 @@ const LoginForm = ({ onLogin }) => {
 
         if (data.name) {
           localStorage.setItem('username', data.name);
-          onLogin(data.name); // 사용자 이름을 onLogin 함수로 넘겨줍니다
+          onLogin(data.name); // 사용자 이름 넘기기
         } else {
           throw new Error('로그인에 실패했습니다.');
         }
